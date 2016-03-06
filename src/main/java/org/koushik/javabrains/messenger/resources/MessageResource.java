@@ -20,17 +20,21 @@ import org.koushik.javabrains.messenger.service.MessageService;
 @Produces(MediaType.APPLICATION_JSON)
 public class MessageResource {
 
-	MessageService messageService = new MessageService();
+	private MessageService messageService = new MessageService();
 
 	@GET
 	public List<Message> getMessages() {
 		return messageService.getAllMessages();
-
 	}
 	
+	@GET
+	@Path("/{messageID}")
+	public Message getMessage(@PathParam("messageID") long id) {
+		return messageService.getMessage(id);
+	}
+
 	@POST
-	public Message addMessage(Message message) {
-		
+	public Message addMessage(Message message) {	
 		return messageService.addMessage(message);
 	}
 	
@@ -45,14 +49,6 @@ public class MessageResource {
 	@Path("/{messageID}")
 	public void deleteMessage(@PathParam("messageID") long id) {
 		messageService.removeMessage(id);
-	}
-	
-	
-	@GET
-	@Path("/{messageID}")
-	public Message getMessage(@PathParam("messageID") long id) {
-		
-		return messageService.getMessage(id);
 	}
 	
 }
