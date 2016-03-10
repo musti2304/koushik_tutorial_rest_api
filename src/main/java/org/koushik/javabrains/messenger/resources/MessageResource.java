@@ -21,7 +21,7 @@ import org.koushik.javabrains.messenger.service.MessageService;
 @Produces(MediaType.APPLICATION_JSON)
 public class MessageResource {
 
-	private MessageService messageService = new MessageService();
+	private  MessageService messageService = new MessageService();
 
 	@GET
 	public List<Message> getMessages(@QueryParam("year") int year,
