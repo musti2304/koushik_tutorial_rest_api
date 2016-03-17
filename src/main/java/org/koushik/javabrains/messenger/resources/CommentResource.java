@@ -41,30 +41,15 @@ public class CommentResource {
 	}
 
 	@DELETE
-	@Path("/{commentId}")
-	public void deleteComment(@PathParam("messageId") long messageId, @PathParam("commentId") long commentId) {
+	@Path("/{commentID}")
+	public void deleteComment(@PathParam("messageID") long messageId, @PathParam("commentID") long commentId) {
 		commentService.removeComment(messageId, commentId);
 	}
 
 	@GET
-	@Path("/{commentId}")
-	public Comment getMessage(@PathParam("messageId") long messageId, @PathParam("commentId") long commentId) {
+	@Path("/{commentID}")
+	public Comment getMessage(@PathParam("messageID") long messageId, @PathParam("commentID") long commentId) {
 		return commentService.getComment(messageId, commentId);
 	}
 
-	// @GET
-	// public String test() {
-	// return "new sub resource";
-	// }
-	//
-	//
-	// @GET
-	// @Path("/{commentID}")
-	// public String test2(@PathParam("messageID") long messageID,
-	// @PathParam("commentID") long commentID) {
-	// return "Method to return comment ID: " + commentID + " for message " +
-	// messageID;
-	//
-	// }
-	//
 }

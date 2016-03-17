@@ -5,7 +5,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import org.koushik.javabrains.messenger.database.DatabaseClass;
+import org.koushik.javabrains.messenger.exception.DataNotFoundException;
 import org.koushik.javabrains.messenger.model.Message;
 
 public class MessageService {
@@ -35,18 +39,15 @@ public class MessageService {
 	}
 	
 	public List<Message> getAllMessages() {
-//		Message m1 = new Message(1L, "Hello World", "Musti");
-//		Message m2 = new Message(2L, "Hello Bonn", "Musti");
-//		List<Message> list = new ArrayList<>();
-//		list.add(m1);
-//		list.add(m2);
-//		return list;
-		
 		return new ArrayList<Message>(messages.values());
 	}
-	
-	public Message getMessage(long id) {
-		return messages.get(id);
+
+	public Message getMessage(long id) {	
+		Message message = messages.get(id);
+		if(message == null) {
+			throw new DataNotFoundException("Message with ID " + id + " not found.");
+		}
+		return message;
 	}
 	
 	public Message addMessage(Message message) {
